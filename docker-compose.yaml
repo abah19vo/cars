@@ -10,7 +10,7 @@ services:
     networks:
       - webnet
   cars_api:
-    build: ./website
+    build: ./cars_api
     ports:
       - 3000:3000
     depends_on:
