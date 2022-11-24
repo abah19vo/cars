@@ -1,28 +1,28 @@
-FROM node:19-alpine3.15 As development
+# Stage 1: Compile and Build angular codebase
 
-WORKDIR /usr/src/app
+# Use official node image as the base image
+FROM node:latest as build
 
-COPY package*.json ./
+# Set the working directory
+WORKDIR /usr/local/app
 
+# Add the source code to app
+COPY ./ /usr/local/app/
+
+# Install all the dependencies
 RUN npm install
 
-COPY . .
-
+# Generate the build of the application
 RUN npm run build
 
-FROM node:19-alpine3.15 as production
 
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
+# Stage 2: Serve app with nginx server
 
-WORKDIR /usr/src/app
+# Use official nginx image as the base image
+FROM nginx:latest
 
-COPY package*.json ./
+# Copy the build output to replace the default nginx contents.
+COPY --from=build /usr/local/app/dist/cars_website /usr/share/nginx/html
 
-RUN npm install --only=production
-
-COPY . .
-
-COPY --from=development /usr/src/app/dist ./dist
-
-CMD ["npm", "start"]
+# Expose port 80
+EXPOSE 80

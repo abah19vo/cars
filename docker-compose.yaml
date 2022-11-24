@@ -1,25 +1,32 @@
 version: "3.8"
 services:
-  website:
-    build: ./cars_website
+  cars_website:
+    build:
+      context: ./cars_website
+      #target: development
     ports:
-      - 4200:4200
-    depends_on:
-      - cars_api
-
+      - 4200:80/tcp
+    volumes:
+      - .:/usr/local/app
+      - /usr/local/app/node_modules
     networks:
       - webnet
   cars_api:
-    build: ./cars_api
+    build:
+      context: ./cars_api
+      #target: development
+    volumes:
+      - .:/usr/local/api
+      - /usr/local/api/node_modules
     ports:
       - 3000:3000
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
     environment:
       DB_HOST: db
-      REDIS_HOST: redis
     networks:
       - webnet
+
   db:
     build: ./db
     ports:
