@@ -1,6 +1,5 @@
-import { Body, Controller, Get, HttpCode, Param, Post, Put, Res } from '@nestjs/common';
-import { Observable } from 'rxjs';
-import { CarsDetails } from 'src/models/car-details';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, Res } from '@nestjs/common';
+import { CarsDetails } from 'src/models/car-details.entity';
 import { CarsDetailsService } from './cars-details-service/cars-details.service';
 
 @Controller('cars-details')
@@ -9,24 +8,31 @@ export class CarsDetailsController {
      constructor(private carsDetailsService: CarsDetailsService) { }
 
      @Get()
-     getAll(): CarsDetails[] {
-          return [];
+     @HttpCode(200)
+     getAll(): Promise<CarsDetails[]> {
+          return this.carsDetailsService.findAll();
      }
 
-     @Get(':id')
-     @HttpCode(201)
-     getCarById(@Param('id') id: string): CarsDetails {
-          return {} as CarsDetails;
+     @Get(':identity')
+     @HttpCode(200)
+     getCarById(@Param('identity') identity: string): Promise<CarsDetails> {
+          return this.carsDetailsService.findOneById(identity);
      }
 
      @Post()
      @HttpCode(201)
-     getCarBy(@Body() createCatDto: CarsDetails) {
+     save(@Body() createCatDto: CarsDetails): Promise<void> {
+          return this.carsDetailsService.save(createCatDto);
 
      }
-     @Put(':id')
+     @Put(':identity')
      @HttpCode(204)
-     updateCarById(@Param('id') id: string, @Body() createCatDto: CarsDetails) {
-          return {} as CarsDetails;
+     updateCarById(@Param('identity') identity: string, @Body() createCatDto: CarsDetails): Promise<void> {
+          return this.carsDetailsService.updateById(identity, createCatDto);
+     }
+     @Delete(':identity')
+     @HttpCode(204)
+     deleteCarById(@Param('identity') identity: string): Promise<void> {
+          return this.carsDetailsService.delete(identity);
      }
 }
