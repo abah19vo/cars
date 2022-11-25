@@ -22,14 +22,17 @@ export class CarsDetailsController {
 
      @Get()
      @HttpCode(200)
-     getAll(@Res() response: Response): Promise<void | CarsDetails[]> {
-          return this.carsDetailsService.findAll().catch((e) => {
+     async getAll(@Res() response: Response): Promise<void | CarsDetails[]> {
+          return await this.carsDetailsService.findAll().catch((e) => {
                let code = e.code;
                if (e instanceof QueryFailedError) {
                     response.status(HttpStatus.BAD_REQUEST).json(code).send();
                     return;
                }
                response.status(HttpStatus.INTERNAL_SERVER_ERROR).json(e.message).send();
+               return;
+          }).then((results) => {
+               response.json(results).send();
                return;
           });
      }
@@ -43,7 +46,11 @@ export class CarsDetailsController {
                     response.status(HttpStatus.BAD_REQUEST).json(code).send();
                     return;
                }
+
                response.status(HttpStatus.INTERNAL_SERVER_ERROR).json(e.message).send();
+               return;
+          }).then((results) => {
+               response.json(results).send();
                return;
           });
      }
@@ -59,6 +66,9 @@ export class CarsDetailsController {
                     return;
                }
                response.status(HttpStatus.INTERNAL_SERVER_ERROR).json(e.message).send();
+               return;
+          }).then((results) => {
+               response.json(results).send();
                return;
           });
      }
@@ -78,6 +88,9 @@ export class CarsDetailsController {
                }
                response.status(HttpStatus.INTERNAL_SERVER_ERROR).json(e.message).send();
                return;
+          }).then((results) => {
+               response.json(results).send();
+               return;
           });
      }
      @Delete(':identity')
@@ -90,7 +103,8 @@ export class CarsDetailsController {
                     return;
                }
                response.status(HttpStatus.INTERNAL_SERVER_ERROR).json(e.message).send();
-               return;
+          }).then(() => {
+               response.send();
           });
      }
 }
