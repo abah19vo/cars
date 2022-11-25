@@ -7,7 +7,7 @@ export class CarsDetails {
           unique: true,
           primary: true,
           generated: 'uuid',
-          nullable:false,
+          nullable: false,
 
      })
      identity: string;

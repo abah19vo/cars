@@ -1,5 +1,18 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, Res } from '@nestjs/common';
+import {
+     Body,
+     Controller,
+     Delete,
+     Get,
+     HttpCode,
+     HttpStatus,
+     Param,
+     Post,
+     Put,
+     Res
+} from '@nestjs/common';
+import { Response } from 'express';
 import { CarsDetails } from 'src/models/car-details.entity';
+import { QueryFailedError } from 'typeorm';
 import { CarsDetailsService } from './cars-details-service/cars-details.service';
 
 @Controller('cars-details')
@@ -9,30 +22,75 @@ export class CarsDetailsController {
 
      @Get()
      @HttpCode(200)
-     getAll(): Promise<CarsDetails[]> {
-          return this.carsDetailsService.findAll();
+     getAll(@Res() response: Response): Promise<void | CarsDetails[]> {
+          return this.carsDetailsService.findAll().catch((e) => {
+               let code = e.code;
+               if (e instanceof QueryFailedError) {
+                    response.status(HttpStatus.BAD_REQUEST).json(code).send();
+                    return;
+               }
+               response.status(HttpStatus.INTERNAL_SERVER_ERROR).json(e.message).send();
+               return;
+          });
      }
 
      @Get(':identity')
      @HttpCode(200)
-     getCarById(@Param('identity') identity: string): Promise<CarsDetails> {
-          return this.carsDetailsService.findOneById(identity);
+     getCarById(@Param('identity') identity: string, @Res() response: Response): Promise<void | CarsDetails> {
+          return this.carsDetailsService.findOneById(identity).catch((e) => {
+               let code = e.code;
+               if (e instanceof QueryFailedError) {
+                    response.status(HttpStatus.BAD_REQUEST).json(code).send();
+                    return;
+               }
+               response.status(HttpStatus.INTERNAL_SERVER_ERROR).json(e.message).send();
+               return;
+          });
      }
 
      @Post()
      @HttpCode(201)
-     save(@Body() createCatDto: CarsDetails): Promise<void> {
-          return this.carsDetailsService.save(createCatDto);
+     async save(@Body() createCatDto: CarsDetails, @Res() response: Response): Promise<void> {
 
+          return await this.carsDetailsService.save(createCatDto).catch((e) => {
+               let code = e.code;
+               if (e instanceof QueryFailedError) {
+                    response.status(HttpStatus.BAD_REQUEST).json(code).send();
+                    return;
+               }
+               response.status(HttpStatus.INTERNAL_SERVER_ERROR).json(e.message).send();
+               return;
+          });
      }
+
      @Put(':identity')
      @HttpCode(204)
-     updateCarById(@Param('identity') identity: string, @Body() createCatDto: CarsDetails): Promise<void> {
-          return this.carsDetailsService.updateById(identity, createCatDto);
+     updateCarById(
+          @Param('identity') identity: string,
+          @Body() createCatDto: CarsDetails,
+          @Res() response: Response
+     ): Promise<void> {
+          return this.carsDetailsService.updateById(identity, createCatDto).catch((e) => {
+               let code = e.code;
+               if (e instanceof QueryFailedError) {
+                    response.status(HttpStatus.BAD_REQUEST).json(code).send();
+                    return;
+               }
+               response.status(HttpStatus.INTERNAL_SERVER_ERROR).json(e.message).send();
+               return;
+          });
      }
      @Delete(':identity')
      @HttpCode(204)
-     deleteCarById(@Param('identity') identity: string): Promise<void> {
-          return this.carsDetailsService.delete(identity);
+     deleteCarById(@Param('identity') identity: string, @Res() response: Response): Promise<void> {
+          return this.carsDetailsService.delete(identity).catch((e) => {
+               let code = e.code;
+               if (e instanceof QueryFailedError) {
+                    response.status(HttpStatus.BAD_REQUEST).json(code).send();
+                    return;
+               }
+               response.status(HttpStatus.INTERNAL_SERVER_ERROR).json(e.message).send();
+               return;
+          });
      }
 }
