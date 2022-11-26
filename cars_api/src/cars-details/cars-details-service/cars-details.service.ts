@@ -27,7 +27,7 @@ export class CarsDetailsService {
 
      findOneById(identity: string): Promise<CarsDetails> {
           try {
-               return this.carsDetailsrepository.findOneBy({ identity });
+               return this.carsDetailsrepository.findOneByOrFail({ identity });
           } catch (error) {
                this.handleError(error);
           }
@@ -59,8 +59,6 @@ export class CarsDetailsService {
      }
 
      private handleError(error: any) {
-          let a = typeof (error)
-          console.log(a)
           if (error instanceof QueryFailedError) {
                throw error;
           }
