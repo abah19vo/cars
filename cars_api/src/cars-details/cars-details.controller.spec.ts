@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CarsDetailsController } from './cars-details.controller';
-
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { CarsDetails } from 'src/models/car-details.entity';
 describe('CarsDetailsController', () => {
   let controller: CarsDetailsController;
 

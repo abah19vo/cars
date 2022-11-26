@@ -29,10 +29,7 @@ export class CarsDetailsController {
                return res;
 
           } catch (e) {
-               let code = e.code;
-               if (e instanceof QueryFailedError) {
-                    throw new HttpException(code, HttpStatus.BAD_REQUEST);
-               }
+               if(e instanceof HttpException) throw e
                throw new HttpException('INTERNAL SERVER ERROR', HttpStatus.INTERNAL_SERVER_ERROR);
           }
      }
@@ -45,10 +42,7 @@ export class CarsDetailsController {
           try {
                return await this.carsDetailsService.findOneById(identity);
           } catch (e) {
-               let code = e.code;
-               if (e instanceof QueryFailedError) {
-                    throw new HttpException(code, HttpStatus.BAD_REQUEST);
-               }
+               
                if (e instanceof EntityNotFoundError) {
                     throw new HttpException('Not Found', HttpStatus.NO_CONTENT);
                }
