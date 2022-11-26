@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CarDetails } from '../models/car-details';
+import { CarsApiService } from '../services/cars-api.service';
 
 @Component({
   selector: 'cars-table',
@@ -7,6 +8,15 @@ import { CarDetails } from '../models/car-details';
   styleUrls: ['./cars-table.component.scss']
 })
 export class CarsTableComponent {
+  constructor(private apiService: CarsApiService) {
+  }
+
+  async ngOnInit() {
+    this.carsDetails = await this.apiService.getAllCarsDetails();
+
+  }
+
+
   carsDetails: CarDetails[] = [
     {
       identity: "dasdas",

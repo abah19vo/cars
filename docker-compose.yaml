@@ -5,7 +5,7 @@ services:
       context: ./cars_website
       #target: development
     ports:
-      - 4200:80/tcp
+      - 80:80/tcp
     volumes:
       - .:/usr/local/app
       - /usr/local/app/node_modules
@@ -27,7 +27,6 @@ services:
 
   db:
     image: mysql:8
-    #build: ./db
     ports:
       - 3306:3306
     environment:
