@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
+import { RoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CarsTableComponent } from './cars-table/cars-table.component';
 import { CarsViewComponent } from './cars-view/cars-view.component';
@@ -15,10 +15,10 @@ import { CarFormComponent } from './car-form/car-form.component';
     CarFormComponent
   ],
   imports: [
+    RoutingModule,
     BrowserModule,
-    AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
