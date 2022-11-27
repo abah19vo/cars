@@ -7,18 +7,22 @@ import { AppComponent } from './app.component';
 import { CarsTableComponent } from './cars-table/cars-table.component';
 import { CarsViewComponent } from './cars-view/cars-view.component';
 import { CarFormComponent } from './car-form/car-form.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     CarsTableComponent,
     CarsViewComponent,
-    CarFormComponent
+    CarFormComponent,
+    FileUploadComponent
   ],
   imports: [
     RoutingModule,
     BrowserModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

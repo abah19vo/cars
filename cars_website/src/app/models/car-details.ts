@@ -1,6 +1,6 @@
 
 export interface CarDetails {
-  identity: string;
+  identity?: string;
   chassisNumber: string;
   modelYear: number;
   typeApprovalNo: number;

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CarDetails } from '../models/car-details';
-import { CarsApiService } from '../services/cars-api.service';
+import { CarsApiService } from '../services/cars-api/cars-api.service';
 
 @Component({
   selector: 'cars-table',

@@ -1,1 +1,57 @@
-<p>car-form works!</p>
+
+
+<div class="main" >
+  <h1>Fill the following form</h1>
+
+  <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Chassis Number</span>
+      <input matInput name="chassisNumber"  type="text" class="form-control" title="Chassis Number" [defaultValue]="carDetails.chassisNumber" [(ngModel)] = "carDetails.chassisNumber"  >
+      <span class="input-group-text" id="basic-addon1">Color</span>
+      <input [(ngModel)] = "carDetails.color" type="text" class="form-control"   [defaultValue]="carDetails.color" >
+  </div>
+
+  <div class="input-group  mb-3">
+    <span class="input-group-text" id="basic-addon1">Type Approval No</span>
+    <input [(ngModel)] = "carDetails.typeApprovalNo" type="number" class="form-control"  [defaultValue]="carDetails.typeApprovalNo"  >
+    <span class="input-group-text" id="basic-addon1">Deregistered Date</span>
+    <input  [(ngModel)] = "carDetails.deregisteredDate" type="number" class="form-control"   [defaultValue]="carDetails.deregisteredDate"  >
+    <span class="input-group-text" id="basic-addon1">First Registration</span>
+    <input [(ngModel)] = "carDetails.firstRegistration" type="number" class="form-control" [defaultValue]="carDetails.firstRegistration" >
+  </div>
+  <div class="input-group  mb-3">
+    <span class="input-group-text" id="basic-addon1">Last Registration</span>
+    <input  [(ngModel)] = "carDetails.lastRegistration" type="number" class="form-control" [defaultValue]="carDetails.lastRegistration"  >
+    <span class="input-group-text" id="basic-addon1">Monthly Registration</span>
+    <input [(ngModel)] = "carDetails.monthlyRegistration" type="number" class="form-control"  [defaultValue]="carDetails.monthlyRegistration"   >
+  </div>
+  <div class="input-group  mb-3">
+    <span class="input-group-text" id="basic-addon1">Last Inspection</span>
+    <input [(ngModel)] = "carDetails.lastInspection" type="number" class="form-control"   [defaultValue]="carDetails.lastInspection">
+    <span class="input-group-text" id="basic-addon1">Next Inspection</span>
+    <input [(ngModel)] = "carDetails.nextInspection"  type="number" class="form-control"   [defaultValue]="carDetails.nextInspection"  >
+    <span class="input-group-text" id="basic-addon1">Model Year</span>
+    <input [(ngModel)] = "carDetails.modelYear" type="number" class="form-control"  [defaultValue]="carDetails.modelYear"  >
+    <span class="input-group-text" id="basic-addon1">Privately Imported</span>
+    <input  [(ngModel)] = "carDetails.privatelyImported" type="number" class="form-control" [defaultValue]="carDetails.privatelyImported"  >
+  </div>
+  <button
+  class="btn-outline-primary btn btn-lg"
+  (click) = "upload()"
+  *ngIf="carDetails.identity == undefined">
+    Upload
+  </button>
+
+  <button
+  class="btn-outline-primary btn btn-lg"
+  (click)= "update()"
+  *ngIf="carDetails.identity != undefined">
+    Update
+  </button>
+  <button
+  class="btn-outline-primary btn btn-lg"
+  (click)= "delete()"
+  *ngIf="carDetails.identity != undefined">
+    Delete
+  </button>
+</div>
+
