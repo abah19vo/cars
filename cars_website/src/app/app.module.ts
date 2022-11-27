@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { RoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CarsTableComponent } from './cars-table/cars-table.component';
-import { CarsViewComponent } from './cars-view/cars-view.component';
 import { CarFormComponent } from './car-form/car-form.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { FormsModule } from '@angular/forms';
@@ -14,7 +13,6 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     CarsTableComponent,
-    CarsViewComponent,
     CarFormComponent,
     FileUploadComponent
   ],

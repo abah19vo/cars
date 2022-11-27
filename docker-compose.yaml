@@ -1,16 +1,5 @@
 version: "3.8"
 services:
-  cars_website:
-    build:
-      context: ./cars_website
-      #target: development
-    ports:
-      - 80:80/tcp
-    volumes:
-      - .:/usr/local/app
-      - /usr/local/app/node_modules
-    networks:
-      - webnet
   cars_api:
     build:
       context: ./cars_api

@@ -1,5 +1,56 @@
-<p>file-upload works!</p>
-<div class="input-group mb-3">
-  <input type="file" class="form-control" id="inputGroupFile01">
-  <label class="input-group-text" for="inputGroupFile01">Upload</label>
+
+
+<div class="main">
+  <h1>File Upload</h1>
+  <div class="input-group mb-3">
+    <input (change)="fileChanged($event)" type="file" class="form-control" id="inputGroupFile01">
+  </div>
+
+  <div  *ngIf="carsDetails.length > 0" class="result">
+    <button
+    (click)="upload()"
+    class="btn-outline-primary btn btn-lg"
+    >
+      Upload All
+    </button>
+
+    <div  class="h4 pb-2 mb-4 text border-bottom ">
+      File Result
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Chassis Number</th>
+          <th scope="col">Color</th>
+          <th scope="col">Type Approval No</th>
+          <th scope="col">Deregistered Date </th>
+          <th scope="col">First Registration </th>
+          <th scope="col">Last Registration </th>
+          <th scope="col">Monthly Registration </th>
+          <th scope="col">Last Inspection </th>
+          <th scope="col">Next Inspection </th>
+          <th scope="col">Model Year </th>
+          <th scope="col">Privately Imported </th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr  *ngFor="let car of carsDetails" >
+            <th scope="row">  {{ car.identity }} </th>
+            <th >  {{ car.chassisNumber }} </th>
+            <td>{{ car.color }}</td>
+            <td> {{ car.typeApprovalNo }} </td>
+            <td>{{ car.deregisteredDate }}</td>
+            <td>{{ car.firstRegistration }}</td>
+            <td>{{ car.lastRegistration }}</td>
+            <td>{{ car.monthlyRegistration }}</td>
+            <td>{{ car.lastInspection }}</td>
+            <td>{{ car.nextInspection }}</td>
+            <td>{{ car.modelYear }}</td>
+            <td>{{ car.privatelyImported }}</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
 </div>

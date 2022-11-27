@@ -8,43 +8,45 @@ export class CarsDetails {
           primary: true,
           generated: 'uuid',
           nullable: false,
+          length: 200,
 
      })
      identity: string;
 
      @Column({
-          unique: true
+          unique: true,
+          length: 200,
      })
      chassisNumber: string;
 
-     @Column()
+     @Column({type: 'bigint'})
      modelYear: number;
 
-     @Column()
+     @Column({type: 'bigint'})
      typeApprovalNo: number;
 
-     @Column()
+     @Column({type: 'bigint'})
      privatelyImported: number;
 
-     @Column()
+     @Column({type: 'bigint'})
      firstRegistration: number;
 
-     @Column()
+     @Column({ length: 200 })
      color: string;
 
-     @Column()
+     @Column({type: 'bigint'})
      deregisteredDate: number;
 
-     @Column()
+     @Column({type: 'bigint'})
      nextInspection: number;
 
-     @Column()
+     @Column({type: 'bigint'})
      lastInspection: number;
 
-     @Column()
+     @Column({type: 'bigint'})
      monthlyRegistration: number;
 
-     @Column()
+     @Column({type: 'bigint'})
      lastRegistration: number;
 }
 
