@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './car-form.component.html',
   styleUrls: ['./car-form.component.scss']
 })
-export class CarFormComponent {
-
-}
+export class CarFormComponent {}

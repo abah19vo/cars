@@ -29,7 +29,7 @@ export class CarsDetailsController {
                return res;
 
           } catch (e) {
-               if(e instanceof HttpException) throw e
+               if (e instanceof HttpException) throw e
                throw new HttpException('INTERNAL SERVER ERROR', HttpStatus.INTERNAL_SERVER_ERROR);
           }
      }
@@ -42,7 +42,7 @@ export class CarsDetailsController {
           try {
                return await this.carsDetailsService.findOneById(identity);
           } catch (e) {
-               
+
                if (e instanceof EntityNotFoundError) {
                     throw new HttpException('Not Found', HttpStatus.NO_CONTENT);
                }

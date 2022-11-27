@@ -8,46 +8,14 @@ import { CarsApiService } from '../services/cars-api.service';
   styleUrls: ['./cars-table.component.scss']
 })
 export class CarsTableComponent {
-  constructor(private apiService: CarsApiService) {
-  }
+  constructor(private apiService: CarsApiService) { }
+  carsDetails: CarDetails[] = []
 
   async ngOnInit() {
     this.carsDetails = await this.apiService.getAllCarsDetails();
-
+    console.log(this.carsDetails);
   }
 
 
-  carsDetails: CarDetails[] = [
-    {
-      identity: "dasdas",
-      chassisNumber: "adsdasd",
-      color: 1,
-      deregisteredDate: "dasda",
-      firstRegistration: 200,
-      lastInspection: 12313,
-      lastRegistration: 13213,
-      modelYear: 2000,
-      monthlyRegistration: 3123,
-      nextInspection: 12312,
-      privatelyImported: 1231,
-      typeApprovalNo: 1231231
-
-    },
-    {
-      identity: "dasddasdasdas",
-      chassisNumber: "adsdsadadasd",
-      color: 1,
-      deregisteredDate: "dasda",
-      firstRegistration: 200,
-      lastInspection: 12313,
-      lastRegistration: 13213,
-      modelYear: 2000,
-      monthlyRegistration: 3123,
-      nextInspection: 12312,
-      privatelyImported: 1231,
-      typeApprovalNo: 1231231
-
-    },
-  ]
 
 }

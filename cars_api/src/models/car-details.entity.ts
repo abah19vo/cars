@@ -30,10 +30,10 @@ export class CarsDetails {
      firstRegistration: number;
 
      @Column()
-     color: number;
+     color: string;
 
      @Column()
-     deregisteredDate: string;
+     deregisteredDate: number;
 
      @Column()
      nextInspection: number;

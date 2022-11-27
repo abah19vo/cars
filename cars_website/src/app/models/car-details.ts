@@ -6,8 +6,8 @@ export interface CarDetails {
   typeApprovalNo: number;
   privatelyImported: number;
   firstRegistration: number;
-  color: number;
-  deregisteredDate: string;
+  color: string;
+  deregisteredDate: number;
   nextInspection: number;
   lastInspection: number;
   monthlyRegistration: number;
